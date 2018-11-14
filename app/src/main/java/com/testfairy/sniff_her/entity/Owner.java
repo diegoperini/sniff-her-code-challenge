@@ -19,7 +19,7 @@ public class Owner {
     private @NonNull String favoriteMovie;
     private @NonNull List<String> hobbies = new ArrayList<>();
 
-    public Owner(@NonNull Integer id, @NonNull String name, @Nullable String favoriteMovie, @Nullable List<String> hobbies) {
+    public Owner(@NonNull final Integer id, @NonNull final String name, @Nullable final String favoriteMovie, @Nullable final List<String> hobbies) {
         ObjectUtil.assertNotNull(name);
         StringUtil.assertNotEmpty(name);
 
@@ -29,7 +29,7 @@ public class Owner {
         this.hobbies = hobbies == null ? new ArrayList<String>() : hobbies;
     }
 
-    public Owner(@NonNull JSONObject json) throws JSONException {
+    public Owner(@NonNull final JSONObject json) throws JSONException {
         ObjectUtil.assertNotNull(json);
 
         id = json.getInt("id");

@@ -12,7 +12,7 @@ public class Message {
     private @NonNull Integer recipientOwnerId;
     private @NonNull String message;
 
-    public Message(@NonNull Integer recipientOwnerId, @NonNull String message) {
+    public Message(@NonNull final Integer recipientOwnerId, @NonNull final String message) {
         ObjectUtil.assertNotNull(recipientOwnerId, message);
         StringUtil.assertNotEmpty(message);
 

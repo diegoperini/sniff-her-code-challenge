@@ -24,7 +24,10 @@ public class Dog {
             throw new NullPointerException("Gender cannot be null.");
         }
 
-        public static Gender fromString(@NonNull String gender) {
+        @NonNull
+        public static Gender fromString(@NonNull final String gender) {
+            ObjectUtil.assertNotNull(gender);
+
             switch (gender) {
                 case "male":
                     return MALE;
@@ -41,7 +44,7 @@ public class Dog {
     private @NonNull String picture;
     private @NonNull Owner owner;
 
-    public Dog(@NonNull Integer id, @NonNull Gender gender, @NonNull String picture, @NonNull Owner owner) {
+    public Dog(@NonNull final Integer id, @NonNull final Gender gender, @NonNull final String picture, @NonNull final Owner owner) {
         ObjectUtil.assertNotNull(gender, picture, owner, id);
         StringUtil.assertNotEmpty(picture);
         StringUtil.assertIsUrl(picture);
@@ -52,7 +55,7 @@ public class Dog {
         this.owner = owner;
     }
 
-    public Dog(@NonNull JSONObject json) throws JSONException {
+    public Dog(@NonNull final JSONObject json) throws JSONException {
         ObjectUtil.assertNotNull(json);
 
         id = json.getInt("id");

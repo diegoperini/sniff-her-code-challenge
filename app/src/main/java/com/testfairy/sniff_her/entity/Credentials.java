@@ -12,7 +12,7 @@ public class Credentials {
     private @NonNull String username;
     private @NonNull String password;
 
-    public Credentials(@NonNull String username, @NonNull String password) {
+    public Credentials(@NonNull final String username, @NonNull final String password) {
         ObjectUtil.assertNotNull(username, password);
         StringUtil.assertNotEmpty(username, password);
 
