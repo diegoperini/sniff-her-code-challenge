@@ -7,6 +7,9 @@ import com.testfairy.sniff_her.entity.Owner;
 import com.testfairy.sniff_her.utility.NumberUtil;
 import com.testfairy.sniff_her.utility.ObjectUtil;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,30 +17,35 @@ import java.util.concurrent.Callable;
 
 import androidx.annotation.NonNull;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class Mock {
-
-    // Examples
-
-    private static Observable<AuthenticationToken> dummyAuthenticationToken = Observable.never();
-    private static Observable<Dog> dummyDog = Observable.never();
-    private static Observable<Message> dummyMessage = Observable.never();
-    private static Observable<Owner> dummyOwner = Observable.never();
+public class ObservableMock {
 
     // Interface
 
     @NonNull
-    public static <T> Observable<T> mockSingle(@NonNull final Observable<T> obs) {
+    public static <T> Observable<T> mock(@NonNull final Observable<T> obs, Class<?> valueType) {
         ObjectUtil.assertNotNull(obs);
 
-        if (dummyAuthenticationToken.getClass().equals(obs.getClass())) {
-            return (Observable<T>) Observable.just(mockAuthenticationToken());
-        } else if (dummyDog.getClass().equals(obs.getClass())) {
-            return (Observable<T>) Observable.just(mockDog());
-        } else if (dummyMessage.getClass().equals(obs.getClass())) {
-            return (Observable<T>) Observable.just(mockMessage());
-        } else if (dummyOwner.getClass().equals(obs.getClass())) {
-            return (Observable<T>) Observable.just(mockOwner());
+        if (AuthenticationToken.class.equals(valueType)) {
+            return (Observable<T>) Observable.just(mockAuthenticationToken()).observeOn(AndroidSchedulers.mainThread()).subscribeOn(AndroidSchedulers.mainThread());
+        } else if (Dog.class.equals(valueType)) {
+            return (Observable<T>) Observable.just(mockDog()).observeOn(AndroidSchedulers.mainThread()).subscribeOn(AndroidSchedulers.mainThread());
+        } else if (Message.class.equals(valueType)) {
+            return (Observable<T>) Observable.just(mockMessage()).observeOn(AndroidSchedulers.mainThread()).subscribeOn(AndroidSchedulers.mainThread());
+        } else if (Owner.class.equals(valueType)) {
+            return (Observable<T>) Observable.just(mockOwner()).observeOn(AndroidSchedulers.mainThread()).subscribeOn(AndroidSchedulers.mainThread());
+        } else {
+            throw new IllegalArgumentException("Argument has no mock implementation.");
+        }
+    }
+
+    @NonNull
+    public static <T> Observable<List<T>> mockList(@NonNull final Observable<List<T>> obs, Class<?> listElementType) {
+        ObjectUtil.assertNotNull(obs);
+
+        if (Dog.class.equals(listElementType)) {
+            return Observable.just((List<T>)mockDogs()).observeOn(AndroidSchedulers.mainThread()).subscribeOn(AndroidSchedulers.mainThread());
         } else {
             throw new IllegalArgumentException("Argument has no mock implementation.");
         }
@@ -245,17 +253,27 @@ public class Mock {
     }
 
     @NonNull
+    private static List<Dog> mockDogs() {
+        return randomList(new Callable<Dog>() {
+            @Override
+            public Dog call() {
+                return mockDog();
+            }
+        }, 10);
+    }
+
+    @NonNull
     private static Message mockMessage() {
-        return new Message(Math.abs(random.nextInt()), randomSentence());
+        return new Message(randomSentence());
     }
 
     @NonNull
     private static Owner mockOwner() {
         return new Owner(Math.abs(random.nextInt()), randomHumanName(), randomMovie(), randomList(new Callable<String>() {
             @Override
-            public String call() throws Exception {
+            public String call() {
                 return randomHobby();
             }
-        }, Math.abs(random.nextInt(10))));
+        }, Math.abs(random.nextInt(10) + 1)));
     }
 }

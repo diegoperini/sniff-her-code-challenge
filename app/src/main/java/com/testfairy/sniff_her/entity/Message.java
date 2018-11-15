@@ -9,29 +9,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Message {
-    private @NonNull Integer recipientOwnerId;
     private @NonNull String message;
 
-    public Message(@NonNull final Integer recipientOwnerId, @NonNull final String message) {
-        ObjectUtil.assertNotNull(recipientOwnerId, message);
+    public Message(@NonNull final String message) {
+        ObjectUtil.assertNotNull(message);
         StringUtil.assertNotEmpty(message);
 
-        this.recipientOwnerId = recipientOwnerId;
         this.message = message;
     }
 
     public JSONObject toJsonObject() throws JSONException {
         JSONObject json = new JSONObject();
 
-        json.put("recipientOwnerId", recipientOwnerId);
         json.put("message", message);
 
         return json;
-    }
-
-    @NonNull
-    public Integer getRecipientOwnerId() {
-        return recipientOwnerId;
     }
 
     @NonNull

@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 // Copied from "https://developer.android.com/training/volley/requestqueue#java"
 public class HttpUtility {
@@ -61,7 +62,7 @@ public class HttpUtility {
     }
 
     @NonNull
-    public RequestQueue getRequestQueue(@NonNull Context context) {
+    private RequestQueue getRequestQueue(@NonNull Context context) {
         ObjectUtil.assertNotNull(context);
 
         if (mRequestQueue == null) {
@@ -73,7 +74,7 @@ public class HttpUtility {
         return mRequestQueue;
     }
 
-    public <T> void addToRequestQueue(@NonNull Context context, @NonNull Request<T> req) {
+    private <T> void addToRequestQueue(@NonNull Context context, @NonNull Request<T> req) {
         ObjectUtil.assertNotNull(context, req);
 
         getRequestQueue(context).add(req);
@@ -85,31 +86,6 @@ public class HttpUtility {
     }
 
     // HTTP utility methods
-    @NonNull
-    public static Observable<JSONObject> httpGetJsonObject(@NonNull final Context context, @NonNull final String url) {
-        ObjectUtil.assertNotNull(context, url);
-        StringUtil.assertIsUrl(url);
-
-        return Observable.create(new ObservableOnSubscribe<JSONObject>() {
-            @Override
-            public void subscribe(final ObservableEmitter<JSONObject> emitter) {
-                JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        emitter.onNext(response);
-                        emitter.onComplete();
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        emitter.onError(error);
-                    }
-                });
-
-                getInstance(context).addToRequestQueue(context, req);
-            }
-        });
-    }
 
     @NonNull
     public static Observable<JSONArray> httpGetJsonArray(@NonNull final Context context, @NonNull final String url) {
@@ -134,7 +110,7 @@ public class HttpUtility {
 
                 getInstance(context).addToRequestQueue(context, req);
             }
-        });
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(AndroidSchedulers.mainThread());
     }
 
     @NonNull
@@ -160,6 +136,6 @@ public class HttpUtility {
 
                 getInstance(context).addToRequestQueue(context, req);
             }
-        });
+        }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(AndroidSchedulers.mainThread());
     }
 }

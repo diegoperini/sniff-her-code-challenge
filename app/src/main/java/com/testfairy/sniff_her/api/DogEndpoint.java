@@ -3,13 +3,11 @@ package com.testfairy.sniff_her.api;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.testfairy.sniff_her.entity.AuthenticationToken;
 import com.testfairy.sniff_her.entity.Dog;
 import com.testfairy.sniff_her.utility.HttpUtility;
 import com.testfairy.sniff_her.utility.ObjectUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -20,9 +18,9 @@ import io.reactivex.functions.Function;
 
 public class DogEndpoint {
 
-    public Observable<List<Dog>> getDogs(@NonNull final Context context, @NonNull final Dog dog) {
+    public Observable<List<Dog>> getDogs(@NonNull final Context context) {
         try {
-            ObjectUtil.assertNotNull(context, dog);
+            ObjectUtil.assertNotNull(context);
 
             return HttpUtility.httpGetJsonArray(context, Endpoint.baseUrl + "/dog")
                     .map(new Function<JSONArray, List<Dog>>() {
