@@ -16,6 +16,7 @@ import io.reactivex.functions.Function;
 
 public class AuthEndpoint {
 
+    @NonNull
     public Observable<AuthenticationToken> authenticate(@NonNull final Context context, @NonNull final Credentials credentials) {
         try {
             ObjectUtil.assertNotNull(context, credentials);

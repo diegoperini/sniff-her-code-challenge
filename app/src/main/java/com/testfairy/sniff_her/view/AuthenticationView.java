@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.testfairy.sniff_her.R;
+import com.testfairy.sniff_her.utility.ObjectUtil;
 
 public class AuthenticationView extends FrameLayout {
 
@@ -22,8 +23,6 @@ public class AuthenticationView extends FrameLayout {
 
     private EditText usernameEditText;
     private EditText passwordEditText;
-//    private TextInputLayout usernameLayout;
-//    private TextInputLayout passwordLayout;
     private Button signInButton;
     private OnSignInListener signInListener;
 
@@ -51,9 +50,7 @@ public class AuthenticationView extends FrameLayout {
         inflate(context, R.layout.authentication_view, this);
 
         usernameEditText = findViewById(R.id.username);
-//        usernameLayout = findViewById(R.id.username_layout);
         passwordEditText = findViewById(R.id.password);
-//        passwordLayout = findViewById(R.id.password_layout);
         signInButton = findViewById(R.id.sign_in);
 
         TextWatcher textWatcher = new TextWatcher() {
@@ -87,7 +84,14 @@ public class AuthenticationView extends FrameLayout {
         });
     }
 
-    public void setOnSignInListener(@NonNull OnSignInListener listener) {
+    public void setCredentials(@NonNull String username, @NonNull String password) {
+        ObjectUtil.assertNotNull(username, password);
+
+        usernameEditText.setText(username);
+        passwordEditText.setText(password);
+    }
+
+    public void setOnSignInListener(@Nullable OnSignInListener listener) {
         this.signInListener = listener;
     }
 

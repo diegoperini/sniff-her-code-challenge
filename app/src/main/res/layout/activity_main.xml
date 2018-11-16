@@ -9,6 +9,8 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/auth_state_view"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,6 +29,7 @@
             />
 
         <com.testfairy.sniff_her.view.AuthenticationView
+            android:id="@+id/authentication_view"
             android:layout_gravity="center"
             android:layout_width="300dp"
             android:layout_height="match_parent"
@@ -36,8 +39,55 @@
 
     </LinearLayout>
 
-    <!--TODO : Auth state -->
-    <!--TODO : Dog Feed state -->
-    <!--TODO : Send Message state -->
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/feed_state_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.testfairy.sniff_her.view.SlidingView
+            android:id="@+id/sliding_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.testfairy.sniff_her.view.SlidingView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/send_message_state_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.testfairy.sniff_her.view.SendMessageView
+            android:id="@+id/send_message_view"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="match_parent">
+
+        </com.testfairy.sniff_her.view.SendMessageView>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:id="@+id/goodbye_view"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:background="@color/colorWhite"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="italic"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="@string/try_again_for_more_tomorrow"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
 
 </FrameLayout>

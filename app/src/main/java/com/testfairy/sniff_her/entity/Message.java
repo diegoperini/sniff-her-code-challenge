@@ -13,7 +13,6 @@ public class Message {
 
     public Message(@NonNull final String message) {
         ObjectUtil.assertNotNull(message);
-        StringUtil.assertNotEmpty(message);
 
         this.message = message;
     }

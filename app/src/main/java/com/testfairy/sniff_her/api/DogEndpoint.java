@@ -18,6 +18,7 @@ import io.reactivex.functions.Function;
 
 public class DogEndpoint {
 
+    @NonNull
     public Observable<List<Dog>> getDogs(@NonNull final Context context) {
         try {
             ObjectUtil.assertNotNull(context);
@@ -40,6 +41,7 @@ public class DogEndpoint {
         }
     }
 
+    @NonNull
     public Observable<Dog> markDogAsInterested(@NonNull final Context context, @NonNull final Dog dog) {
         try {
             ObjectUtil.assertNotNull(context, dog);
@@ -56,6 +58,7 @@ public class DogEndpoint {
         }
     }
 
+    @NonNull
     public Observable<Dog> markDogAsNotInterested(@NonNull final Context context, @NonNull final Dog dog) {
         try {
             ObjectUtil.assertNotNull(context, dog);

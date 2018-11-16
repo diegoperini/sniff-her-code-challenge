@@ -16,9 +16,9 @@ public class Dog {
         public String toString() {
             switch (this) {
                 case MALE:
-                    return "male";
+                    return "Male";
                 case FEMALE:
-                    return "female";
+                    return "Female";
             }
 
             throw new NullPointerException("Gender cannot be null.");
@@ -29,9 +29,9 @@ public class Dog {
             ObjectUtil.assertNotNull(gender);
 
             switch (gender) {
-                case "male":
+                case "Male":
                     return MALE;
-                case "female":
+                case "Female":
                     return FEMALE;
                 default:
                     throw new IllegalArgumentException("Invalid gender found.");

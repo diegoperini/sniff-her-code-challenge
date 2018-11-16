@@ -3,4 +3,11 @@
     <string name="sign_in">Sign-In</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
+    <string name="send">SEND</string>
+    <string name="your_message">Your Message</string>
+    <string name="owner_name_static">Owner Name: </string>
+    <string name="hobbies_static">Hobbies: </string>
+    <string name="favorite_movie_static">Favorite Movie: </string>
+    <string name="dog_gender_static">Dog Gender: </string>
+    <string name="try_again_for_more_tomorrow">Try again for more tomorrow!</string>
 </resources>

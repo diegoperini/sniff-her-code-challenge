@@ -14,7 +14,6 @@ public class Credentials {
 
     public Credentials(@NonNull final String username, @NonNull final String password) {
         ObjectUtil.assertNotNull(username, password);
-        StringUtil.assertNotEmpty(username, password);
 
         this.username = username;
         this.password = password;

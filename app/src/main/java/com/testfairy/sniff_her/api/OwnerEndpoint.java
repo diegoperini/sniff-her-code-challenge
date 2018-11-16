@@ -16,6 +16,7 @@ import io.reactivex.functions.Function;
 
 public class OwnerEndpoint {
 
+    @NonNull
     public Observable<Owner> sendMessage(@NonNull final Context context, @NonNull final Owner owner, @NonNull final Message message) {
         try {
             ObjectUtil.assertNotNull(context, owner, message);

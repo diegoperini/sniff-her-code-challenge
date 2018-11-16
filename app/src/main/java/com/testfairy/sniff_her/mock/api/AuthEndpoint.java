@@ -11,6 +11,7 @@ import io.reactivex.Observable;
 
 public class AuthEndpoint extends com.testfairy.sniff_her.api.AuthEndpoint {
 
+    @NonNull
     @Override
     public Observable<AuthenticationToken> authenticate(@NonNull Context context, @NonNull Credentials credentials) {
         return ObservableMock.mock(super.authenticate(context, credentials), AuthenticationToken.class);

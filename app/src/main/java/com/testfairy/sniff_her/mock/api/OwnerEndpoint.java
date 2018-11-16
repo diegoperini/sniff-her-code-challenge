@@ -11,6 +11,7 @@ import io.reactivex.Observable;
 
 public class OwnerEndpoint extends com.testfairy.sniff_her.api.OwnerEndpoint {
 
+    @NonNull
     @Override
     public Observable<Owner> sendMessage(@NonNull Context context, @NonNull Owner owner, @NonNull Message message) {
         return ObservableMock.mock(super.sendMessage(context, owner, message), Owner.class);

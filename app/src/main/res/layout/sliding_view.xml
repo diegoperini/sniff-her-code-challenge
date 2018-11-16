@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+
+    >
+
+    <LinearLayout
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textSize="18dp"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            android:lines="1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/owner_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:textSize="18dp"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            android:lines="1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/owner_hobbies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:textSize="18dp"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            android:lines="1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/owner_fav_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+
+        <TextView
+            android:text="skdskjdhksajda"
+            android:textSize="18dp"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            android:lines="1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/dog_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:padding="2dp"
+        android:id="@+id/slide"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:background="@color/colorAccent"
+        />
+
+</FrameLayout>
