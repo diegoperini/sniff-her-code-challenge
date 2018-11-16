@@ -24,7 +24,7 @@ public class ObservableMock {
     // Interface
 
     @NonNull
-    public static <T> Observable<T> mock(@NonNull final Observable<T> obs, Class<?> valueType) {
+    public static <T> Observable<T> mock(@NonNull final Observable<T> obs, Class<T> valueType) {
         ObjectUtil.assertNotNull(obs);
 
         if (AuthenticationToken.class.equals(valueType)) {
@@ -41,7 +41,7 @@ public class ObservableMock {
     }
 
     @NonNull
-    public static <T> Observable<List<T>> mockList(@NonNull final Observable<List<T>> obs, Class<?> listElementType) {
+    public static <T> Observable<List<T>> mockList(@NonNull final Observable<List<T>> obs, Class<T> listElementType) {
         ObjectUtil.assertNotNull(obs);
 
         if (Dog.class.equals(listElementType)) {
