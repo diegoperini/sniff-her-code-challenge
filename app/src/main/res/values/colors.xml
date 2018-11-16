@@ -3,4 +3,8 @@
     <color name="colorPrimary">#412c76</color>
     <color name="colorPrimaryDark">#2b1c51</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorButtonNormal">#412c76</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#412c76</color>
 </resources>
